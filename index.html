@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Property Info Form | Terra Multa</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+<style>
+  body {
+    margin: 0;
+    padding: 60px 20px;
+    background: linear-gradient(to right, #0e0e0e, #1a1a1a);
+    font-family: 'Inter', sans-serif;
+    color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+    .container {
+    background: #111;
+    max-width: 800px;
+    width: 100%;
+    padding: 60px 70px;
+    border-radius: 0;
+    border: 1px solid #1B4E4B;
+    box-shadow:
+        0 12px 20px rgba(0, 0, 0, 0.6),
+        inset 0 0 0 1px rgba(38, 152, 145, 0.06);
+    position: relative;
+    }
+
+  .logo-container {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .logo-container img {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+    filter: brightness(1.15) contrast(1.05);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #269891;
+    border-bottom: 1px solid #1B4E4B;
+    padding-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    color: #ccc;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  input, select, textarea {
+    width: 100%;
+    background: #1a1a1a;
+    border: none;
+    border-bottom: 2px solid #1B4E4B;
+    border-radius: 0;
+    padding: 14px 18px;
+    font-size: 1rem;
+    color: #fff;
+    transition: all 0.3s ease;
+    margin-bottom: 25px;
+  }
+
+  input::placeholder {
+    color: #777;
+  }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+    outline: none;
+    border-bottom: 2px solid #269891;
+    background-color: #161616;
+    box-shadow: inset 0 -2px 0 #269891;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+  select[multiple] {
+    height: 140px;
+  }
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #1a1a1a;
+  color: #f2f2f2;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  border-bottom: 2px solid #1B4E4B;
+  border-radius: 0;
+  padding: 14px 18px;
+  padding-right: 48px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-image: url("data:image/svg+xml,%3Csvg fill='%23269891' height='12' viewBox='0 0 24 24' width='12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 12px;
+  box-shadow: inset 0 -2px 0 transparent;
+}
+
+select:hover,
+select:focus {
+  background-color: #161616;
+  border-bottom: 2px solid #269891;
+  box-shadow: inset 0 -2px 0 #269891;
+  outline: none;
+}
+select:focus {
+  outline: none;
+  border-bottom: 2px solid #269891;
+  box-shadow:
+    inset 0 -2px 0 #269891,
+    0 0 8px rgba(38, 152, 145, 0.25);
+}
+
+select[multiple] {
+  height: 140px;
+  scrollbar-width: thin;
+  scrollbar-color: #269891 #1a1a1a;
+}
+
+select[multiple]::-webkit-scrollbar {
+  width: 6px;
+}
+
+select[multiple]::-webkit-scrollbar-thumb {
+  background: #269891;
+  border-radius: 3px;
+}
+
+  button {
+    display: block;
+    width: 100%;
+    background-color: #269891;
+    border: none;
+    padding: 18px 24px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #fff;
+    border-radius: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #226763;
+    box-shadow:
+      0 3px 6px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  }
+
+  button:active {
+    background-color: #1B4E4B;
+    transform: translateY(2px);
+    box-shadow:
+      inset 0 2px 5px rgba(0, 0, 0, 0.5),
+      0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input, select, textarea {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+  }
+
+  @media screen and (max-width: 768px) {
+    .container {
+      padding: 40px 30px;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .logo-container img {
+      max-width: 100%;
+    }
+  }
+
+
+.gucci-success {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, #1B4E4B, #269891);
+  color: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+  z-index: 9999;
+  transition: top 0.5s ease, opacity 0.5s ease;
+  max-width: 90%;
+  width: auto;
+  text-align: center;
+  white-space: normal;
+  line-height: 1.4;
+  flex-wrap: nowrap;
+}
+
+.gucci-success.show {
+  top: 20px;
+}
+
+.gucci-icon {
+  flex-shrink: 0;
+  stroke: #2ecc71;
+}
+
+.gucci-message {
+  word-break: break-word;
+  white-space: normal;
+  text-align: center;
+}
+
+#gucciSuccess {
+  position: fixed;
+  top: -100px; /* keep it off-screen */
+  opacity: 0;
+  pointer-events: none;
+  transition: top 0.5s ease, opacity 0.5s ease;
+  z-index: 9999;
+}
+
+#gucciSuccess.show {
+  top: 20px;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.gucci-text {
+  flex: 1;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+}
+
+#closeBanner {
+  all: unset;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  line-height: 1;
+  transition: opacity 0.3s ease;
+}
+
+#closeBanner:hover {
+  opacity: 0.7;
+}
+
+#gucciSuccess button {
+  all: unset;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ccc;
+  cursor: pointer;
+  padding: 0 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+#gucciSuccess button:hover {
+  opacity: 0.6;
+}
+
+
+input:hover,
+select:hover,
+textarea:hover {
+  background-color: #161616;
+  border-bottom: 2px solid #269891;
+  box-shadow: inset 0 -2px 0 #269891;
+}
+
+
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  background-color: #1a1a1a;
+  color: #f2f2f2;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  border: none;
+  border-bottom: 2px solid #1B4E4B;
+  border-radius: 4px;
+  padding: 16px 20px;
+  padding-right: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 0 1px rgba(38, 152, 145, 0.05);
+}
+
+.select-wrapper select:focus {
+  outline: none;
+  border-bottom: 2px solid #269891;
+  box-shadow: 0 0 8px rgba(38, 152, 145, 0.25);
+}
+
+.custom-arrow {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  pointer-events: none;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23269891' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.select-wrapper:hover select,
+.select-wrapper select:focus {
+  background-color: #161616;
+  border-bottom: 2px solid #269891;
+  box-shadow: inset 0 -2px 0 #269891;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-next {
+  box-shadow: 0 0 0 3px rgba(38, 152, 145, 0.6) !important;
+  transition: box-shadow 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+
+select.highlight-next {
+  box-shadow: 0 0 0 3px rgba(38, 152, 145, 0.6);
+}
+
+input.highlight-next,
+textarea.highlight-next {
+  box-shadow: 0 0 0 3px rgba(38, 152, 145, 0.6);
+}
+
+.field-note {
+  color: #aaa;
+  font-size: 0.85rem;
+  margin-bottom: 8px;
+  margin-top: -6px;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+
+
+
+</style>
+
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByKNN57quzIpaIox3wCIGIVoTrRcowc8k&libraries=places"></script>
+</head>
+
+<body>
+  <div class="container">
+    <div class="logo-container">
+      <img src="https://res.cloudinary.com/dcmvpmbsc/image/upload/v1744150928/TME_Mar3.2024_iockmn.jpg" alt="Terra Multa Enterprises Logo" />
+    </div>
+
+<div id="gucciSuccess" class="gucci-success">
+  <svg class="gucci-icon" xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 6L9 17l-5-5" />
+  </svg>
+  <span class="gucci-text">Submission Received — The Future Looks Bright</span>
+  <button id="closeBanner" aria-label="Close">&times;</button>
+</div>
+
+    <h2>Property Information</h2>
+
+    <!-- START FORM: Drop your form fields here -->
+    <form method="POST" action="#">
+
+            <!-- Dropdown fields -->
+      <!-- Property Still Available -->
+      <label for="propertyAvailable">Property Still Available?</label>
+      <div class="select-wrapper">
+        <select id="propertyAvailable" name="propertyAvailable" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        <span class="custom-arrow"></span>
+      </div>
+
+      <label for="occupancy">Occupancy Status At Closing</label>
+      <select id="occupancy" name="occupancy" required>
+        <option value="" disabled selected>Select an option</option>
+        <option value="Vacant">Vacant</option>
+        <option value="Owner-Occupied">Owner-Occupied</option>
+        <option value="Tenant-Occupied">Tenant-Occupied</option>
+        <option value="Special Situation">Special Situation</option>
+      </select>
+
+      <div class="form-group">
+        <label for="fourPoint">4-Point Items</label>
+        <div class="field-note">
+          Includes major systems commonly reviewed by buyers, lenders, or insurers.
+ — evaluates roof, plumbing, electric, and HVAC.
+        </div>
+        <select id="fourPoint" name="fourPoint" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="None">None</option>
+          <option value="1/4 Needs Replacement">1/4 Needs Replacement</option>
+          <option value="2/4 Needs Replacement">2/4 Needs Replacement</option>
+          <option value="3/4 Needs Replacement">3/4 Needs Replacement</option>
+          <option value="4/4 Needs Replacement">4/4 Needs Replacement</option>
+        </select>
+      </div>
+
+      <label for="creativeOffer">Will Consider Creative Offer?</label>
+      <div class="select-wrapper">
+        <select id="creativeOffer" name="creativeOffer" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+        <span class="custom-arrow"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="askingPrice">Seller's Minimum Asking Price ($)</label>
+        <div class="field-note">
+          What is the lowest price the seller would reasonably consider?
+        </div>
+        <input
+          type="text"
+          id="askingPrice"
+          name="askingPrice"
+          placeholder="350,000"
+          required
+          inputmode="numeric"
+        />
+      </div>
+
+      <!-- Submit -->
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBD5b7zCYnCE13XitbspUhups_RHMAy-IQ",
+  authDomain: "information-gathering-form.firebaseapp.com",
+  databaseURL: "https://information-gathering-form-default-rtdb.firebaseio.com",
+  projectId: "information-gathering-form",
+  storageBucket: "information-gathering-form.firebasestorage.app",
+  messagingSenderId: "205717935253",
+  appId: "1:205717935253:web:e8709d2c124c7b00b6379c"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const form = document.querySelector("form");
+const gucciSuccess = document.getElementById("gucciSuccess");
+const submitButton = form.querySelector("button[type='submit']");
+
+// Scroll to next input/select on change
+const formElements = Array.from(form.querySelectorAll('input, select, textarea'));
+
+formElements.forEach((el, index) => {
+  el.addEventListener('change', () => {
+    const nextElement = formElements[index + 1];
+    if (!nextElement) return;
+
+    // Always find actual input/select/textarea (never apply to wrapper)
+    let target = nextElement;
+    if (nextElement.closest('.select-wrapper')) {
+      target = nextElement.closest('.select-wrapper').querySelector('select, input, textarea');
+    }
+
+    // Apply visual highlight
+    if (target) {
+      target.classList.remove('highlight-next'); // remove if already present
+      void target.offsetWidth; // force reflow to restart animation
+      target.classList.add('highlight-next');
+
+      setTimeout(() => {
+        target.classList.remove('highlight-next');
+      }, 1500);
+    }
+
+    // Smooth scroll to element
+    nextElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+    // Only focus on inputs/textarea, not selects
+    if (nextElement.tagName === 'INPUT' || nextElement.tagName === 'TEXTAREA') {
+      nextElement.focus();
+    }
+  });
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  // Collect multi-select motivation options
+  const motivationEl = document.getElementById("motivation");
+  const motivation = motivationEl.value;
+  // Format asking price as number
+  const askingPriceRaw = document.getElementById("askingPrice").value;
+  const askingPrice = parseFloat(askingPriceRaw.replace(/,/g, ""));
+
+  // Collect all form values into data object
+  const data = {
+    propertyAvailable: document.getElementById("propertyAvailable").value,
+    occupancy: document.getElementById("occupancy").value,
+    fourPoint: document.getElementById("fourPoint").value,
+    creativeOffer: document.getElementById("creativeOffer").value,
+    askingPrice: askingPrice,
+    contactId: new URLSearchParams(window.location.search).get("contact_id") || "unknown",
+    submittedAt: new Date().toISOString()
+  };
+
+    try {
+    submitButton.disabled = true;
+    submitButton.textContent = "Submitting...";
+
+    await addDoc(collection(db, "propertySubmissions"), data);
+
+    // Show both success banners
+    gucciSuccess.classList.add("show");
+    document.getElementById("gucciSuccess").classList.add("show");
+
+    // Scroll to top so the banner is visible
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    submitButton.textContent = "Submitted! ✔";
+
+    // Allow manual dismissal via close button
+    const closeBannerBtn = document.getElementById("closeBanner");
+    if (closeBannerBtn) {
+        closeBannerBtn.onclick = () => {
+        gucciSuccess.classList.remove("show");
+        };
+    }
+
+    // Auto-hide after 4 seconds
+    setTimeout(() => {
+      gucciSuccess.classList.remove("show");
+      document.getElementById("gucciSuccess").classList.remove("show");
+      submitButton.disabled = false;
+      submitButton.textContent = "Submit";
+      form.reset();
+    }, 4000);
+    } catch (err) {
+    console.error("❌ Firebase error:", err);
+    alert("❌ Submission failed: " + err.message);
+    submitButton.disabled = false;
+    submitButton.textContent = "Submit";
+    }
+});
+</script>
+
+<script>
+const input = document.getElementById("askingPrice");
+
+input.addEventListener("input", (e) => {
+  // Store cursor position
+  let cursorPosition = input.selectionStart;
+
+  // Remove all non-digit characters
+  let rawValue = input.value.replace(/\D/g, "");
+
+  // Format number with commas
+  let formattedValue = rawValue.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+  // Update input value
+  input.value = formattedValue;
+
+  // Calculate position offset due to commas
+  let diff = input.value.length - rawValue.length;
+
+  // Adjust cursor position to account for commas
+  cursorPosition += diff;
+
+  // Ensure cursor position is valid
+  if (cursorPosition > input.value.length) cursorPosition = input.value.length;
+
+  input.setSelectionRange(cursorPosition, cursorPosition);
+});
+</script>
+
+
+
+</body>
+</html>
