@@ -455,6 +455,27 @@ textarea.highlight-next {
         </select>
       </div>
 
+            <!-- Seller Motivation Reason -->
+      <div class="select-wrapper">
+        <label for="motivation">Seller Motivation Reason</label>
+        <select id="motivation" name="MNPw8KepVIFa2BB0kPxv" required>
+          <option value="" disabled selected>Select an option</option>
+          <option value="Pre-Forclosure">Pre-Forclosure</option>
+          <option value="Divorce">Divorce</option>
+          <option value="Probate">Probate</option>
+          <option value="Tired Landlord">Tired Landlord</option>
+          <option value="Out-Of-State Owner">Out-Of-State Owner</option>
+          <option value="Intrafamily Transfer">Intrafamily Transfer</option>
+          <option value="Empty Nester">Empty Nester</option>
+          <option value="Re-Locating">Re-Locating</option>
+          <option value="Tax Delinquent">Tax Delinquent</option>
+          <option value="Code Violation">Code Violation</option>
+          <option value="Special Situation">Special Situation</option>
+          <option value="None">None</option>
+        </select>
+        <span class="custom-arrow"></span>
+      </div>
+
       <label for="creativeOffer">Will Consider Creative Offer?</label>
       <div class="select-wrapper">
         <select id="creativeOffer" name="creativeOffer" required>
@@ -562,6 +583,7 @@ form.addEventListener("submit", async (e) => {
     propertyAvailable: document.getElementById("propertyAvailable").value,
     occupancy: document.getElementById("occupancy").value,
     fourPoint: document.getElementById("fourPoint").value,
+    motivation: motivation,
     creativeOffer: document.getElementById("creativeOffer").value,
     askingPrice: askingPrice,
     contactId: new URLSearchParams(window.location.search).get("contact_id") || "unknown",
