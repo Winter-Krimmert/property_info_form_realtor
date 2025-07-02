@@ -415,6 +415,8 @@ textarea.highlight-next {
 
     <!-- START FORM: Drop your form fields here -->
     <form method="POST" action="#">
+      <input type="hidden" id="formType" name="formType" value="realtor" />
+
 
             <!-- Dropdown fields -->
       <!-- Property Still Available -->
@@ -556,6 +558,7 @@ form.addEventListener("submit", async (e) => {
 
   // Collect all form values into data object
   const data = {
+    formType: document.getElementById("formType").value,
     propertyAvailable: document.getElementById("propertyAvailable").value,
     occupancy: document.getElementById("occupancy").value,
     fourPoint: document.getElementById("fourPoint").value,
